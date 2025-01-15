@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@layer utilities{
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+:root{
+--ig-red: rgb(207,33,66);
+--ig-orange:rgb(230,173,77);
+}
+
