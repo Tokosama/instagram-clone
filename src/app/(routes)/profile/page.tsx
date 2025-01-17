@@ -1,7 +1,12 @@
+import {auth} from "@/auth"
+
 import PostsGrid from "@/components/PostsGrid";
+import { prisma } from "@/db";
 import { CheckIcon, ChevronLeft, Cog } from "lucide-react";
 import Link from "next/link";
-export default function ProfilePage() {
+export default async function ProfilePage() {
+  const session = await auth();
+  const  profile = await prisma.profile.findFirstOrThrow({where:{email:session?.user?.email as string}})
   return (
     <main>
       <section className="flex justify-between items-center">
@@ -9,7 +14,7 @@ export default function ProfilePage() {
           <ChevronLeft />
         </button>
         <div className="font-bold flex items-center gap-2">
-          my_name is jhon
+          {profile.username}
           <div className="size-5 rounded-full bg-ig-red inline-flex justify-center items-center text-white">
             <CheckIcon size={16} />{" "}
           </div>
@@ -32,11 +37,10 @@ export default function ProfilePage() {
         </div>
       </section>
       <section className="text-center mt-2">
-        <h1 className="text-xl font-bold">Jhony</h1>
-        <p className="text-gray-500 mt-1 mb-1">Business Account</p>
+        <h1 className="text-xl font-bold">{profile.name}</h1>
+        <p className="text-gray-500 mt-1 mb-1">{profile.subtitle}</p>
         <p className="">
-          Entrepreneur, Husband , Father <br />
-          contact: johny@gmail.com
+        {profile.bio}
         </p>
       </section>
       <section className="mt-4 ">
