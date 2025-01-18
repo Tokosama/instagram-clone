@@ -54,7 +54,7 @@ export default async function ProfilePage() {
           </Link>
         </div>
       </section>
-      <section className="mt-4">posts
+      <section className="mt-4">
         <PostsGrid/>
       </section>
     </main>
