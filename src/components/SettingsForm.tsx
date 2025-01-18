@@ -7,7 +7,6 @@ import { UploadCloudIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 export default function SettingsForm({
-  userEmail,
   profile,
 }: {
   userEmail: string;

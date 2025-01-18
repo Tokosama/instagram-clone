@@ -1,37 +1,8 @@
 "use client";
+import Link from "next/link";
 import Masonry from "react-masonry-css";
 
-const images = [
-  "https://picsum.photos/id/32/1024/768",
-  "https://picsum.photos/id/33/768/1024",
-  "https://picsum.photos/id/32/1024/768",
-  "https://picsum.photos/id/33/768/1024",
-  "https://picsum.photos/id/32/1024/768",
-  "https://picsum.photos/id/33/768/1024",
-  "https://picsum.photos/id/32/1024/768",
-  "https://picsum.photos/id/33/768/1024",
-  "https://picsum.photos/id/32/1024/768",
-  "https://picsum.photos/id/33/768/1024",
-  "https://picsum.photos/id/32/1024/768",
-  "https://picsum.photos/id/33/768/1024",
-  "https://picsum.photos/id/32/1024/768",
-  "https://picsum.photos/id/33/768/1024",
-  "https://picsum.photos/id/32/1024/768",
-  "https://picsum.photos/id/33/768/1024",
-  "https://picsum.photos/id/32/1024/768",
-  "https://picsum.photos/id/33/768/1024",
-  "https://picsum.photos/id/32/1024/768",
-  "https://picsum.photos/id/33/768/1024",
-  "https://picsum.photos/id/32/1024/768",
-  "https://picsum.photos/id/33/768/1024",
-  "https://picsum.photos/id/32/1024/768",
-  "https://picsum.photos/id/33/768/1024",
-  "https://picsum.photos/id/32/1024/768",
-  "https://picsum.photos/id/33/768/1024",
-  "https://picsum.photos/id/32/1024/768",
-  "https://picsum.photos/id/33/768/1024",
-];
-export default function PostsGrid() {
+export default function PostsGrid({posts}:{posts:Post[]}) {
   return (
     <>
       <div className="max-w-4xl mx-auto">
@@ -44,16 +15,16 @@ export default function PostsGrid() {
           className="flex -ml-4 "
           columnClassName="pl-4"
         >
-          {images.map((item, key) => (
-            <div
+          {posts.map((post, key) => (
+            <Link href={`/posts/${post.id}`}
               key={key}
               className="mb-4 "
             >
               <img
-                src={item}
+                src={post.image}
                 alt=""
               />
-            </div>
+            </Link>
           ))}
         </Masonry>
       </div>

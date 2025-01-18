@@ -29,7 +29,7 @@ export default function DesktopNav() {
             <LayoutGridIcon />
             Browser
           </Link>
-          <Link href={"/Profile"}>
+          <Link href={"/profile"}>
             <UserIcon />
             Profile
           </Link>
