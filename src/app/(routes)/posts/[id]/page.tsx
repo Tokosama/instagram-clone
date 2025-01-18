@@ -1,10 +1,26 @@
 /* eslint-disable @next/next/no-img-element */
+import Avatar from "@/components/Avatar";
+import Comment from "@/components/Comment";
+import SessionCommentForm from "@/components/SessionCommentForm";
 import { prisma } from "@/db";
-
-export default async function SinglePostPage({ params }: { id: string }) {
+import { Suspense } from "react";
+import { uniq } from "lodash";
+export default async function SinglePostPage({
+  params,
+}: {
+  params: { id: string };
+}) {
   const post = await prisma.post.findFirstOrThrow({ where: { id: params.id } });
   const authorProfile = await prisma.profile.findFirstOrThrow({
     where: { email: post.author },
+  });
+  const comments = await prisma.comment.findMany({
+    where: { postId: post.id },
+  });
+  const commentsAuthors = await prisma.profile.findMany({
+    where: {
+      email: { in: uniq(comments.map((c) => c.author)) },
+    },
   });
   return (
     <div>
@@ -17,25 +33,28 @@ export default async function SinglePostPage({ params }: { id: string }) {
           />
         </div>
         <div>
-          <div className="flex gap-2 ">
-            <div>
-              <div className="size-16 aspect-square overflow-hidden rounded-full">
-                <img
-                  className=""
-                  src={authorProfile.avatar || ""}
-                  alt={authorProfile.username + "avatar"}
+          <Comment
+            createdAt={post.createdAt}
+            text={post.description}
+            authorProfile={authorProfile}
+          />
+          <div className="pt-4 flex flex-col gap-4" >
+            {comments.map((comment) => (
+              <div key={comment.id}>
+                <Comment
+                createdAt={comment.createdAt}
+                  text={comment.text}
+                  authorProfile={commentsAuthors.find(
+                    (a) => a.email === comment.author
+                  )}
                 />
               </div>
-            </div>
-            <div className="">
-              <h3>{authorProfile.name}</h3>
-              <h4 className="text-gray-600 text-sm -mt-1">
-                @{authorProfile.username}
-              </h4>
-              <div className="bg-gray-200 border border-gray-300 rounded-md p-4 mt-2 ">
-                <p>{post.description}</p>
-              </div>
-            </div>
+            ))}{" "}
+          </div>
+          <div className="pt-8 border-t mt-8 border-t-gray-300">
+            <Suspense>
+              <SessionCommentForm postId={post.id} />
+            </Suspense>
           </div>
         </div>
       </div>
