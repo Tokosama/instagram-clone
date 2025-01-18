@@ -42,7 +42,7 @@ export default function PostsGrid() {
             500: 2,
           }}
           className="flex -ml-4 "
-          columnClassName="pl-4 bg"
+          columnClassName="pl-4"
         >
           {images.map((item, key) => (
             <div
@@ -58,7 +58,6 @@ export default function PostsGrid() {
         </Masonry>
       </div>
 
-      <div className="grid grid-cols-3 gap-4 ">posts here ...</div>
     </>
   );
 }

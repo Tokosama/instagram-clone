@@ -39,12 +39,12 @@ export default function SettingsForm({
         router.refresh();
       }}
     >
-      <input type="hidden" name="avatar" value={avatarUrl} />
+      <input type="hidden" name="avatar" value={avatarUrl || ''} />
       <div className="flex gap-4 items-center">
         Avatar
         <div className="">
           <div className="bg-gray-200 size-24 rounded-full aspect-square border-2 overflow-hidden shadow-md shadow-gray-400 ">
-            <img className=" " src={avatarUrl} alt="" />
+            <img className=" " src={avatarUrl || ''} alt="" />
           </div>
         </div>
         <div className="">
