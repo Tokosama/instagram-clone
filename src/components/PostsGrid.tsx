@@ -1,4 +1,5 @@
 "use client";
+import { Post } from "@prisma/client";
 import Link from "next/link";
 import Masonry from "react-masonry-css";
 
@@ -15,9 +16,9 @@ export default function PostsGrid({posts}:{posts:Post[]}) {
           className="flex -ml-4 "
           columnClassName="pl-4"
         >
-          {posts.map((post, key) => (
+          {posts.map((post) => (
             <Link href={`/posts/${post.id}`}
-              key={key}
+              key={post.id}
               className="mb-4 "
             >
               <img
