@@ -25,22 +25,21 @@ export default function RootLayout({
   children,
   modal,
 }: Readonly<{
-  modal: React.ReactNode,
+  modal: React.ReactNode;
   children: React.ReactNode;
-}>){
+}>) {
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased `}
       >
         <Theme>
-        {modal}
+          {modal}
 
           <div className="flex min-h-screen">
             <DesktopNav />
             <div className="pb-24 lg:pb-4 pt-4  px-4 lg:px-8 w-full  flex justify-around ">
-
-              {children}
+              <div className="w-full">{children}</div>
             </div>
           </div>
 

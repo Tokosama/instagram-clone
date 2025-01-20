@@ -25,7 +25,9 @@ export default function CreatePage() {
     }
   }, [file]);
   return (
-    <form action={async data =>{
+    <form 
+    className="max-w-md mx-auto "
+    action={async data =>{
      const id = await postEntry(data);
      router.push(`/post/${id}`)
      router.refresh();

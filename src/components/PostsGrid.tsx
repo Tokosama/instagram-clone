@@ -22,6 +22,7 @@ export default function PostsGrid({posts}:{posts:Post[]}) {
               className="mb-4 "
             >
               <img
+              className="rounded-lg"
                 src={post.image}
                 alt=""
               />

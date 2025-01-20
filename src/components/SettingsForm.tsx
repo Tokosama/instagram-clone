@@ -41,7 +41,7 @@ export default function SettingsForm({
       <div className="flex gap-4 items-center">
         <div className="">
           <div className="bg-gray-200 size-24 rounded-full aspect-square border-2 overflow-hidden shadow-md shadow-gray-400 ">
-            <img className=" " src={avatarUrl || null} alt="" />
+            <img className=" " src={avatarUrl || undefined} alt="" />
           </div>
         </div>
         <div className="">
