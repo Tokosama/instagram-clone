@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 
 import { getSinglePostData } from "@/actions";
 import SinglePostContent from "@/components/SinglePostContent";

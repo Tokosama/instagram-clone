@@ -1,15 +1,17 @@
-import { CheckIcon, ChevronLeft, Cog } from "lucide-react";
+import { CheckIcon, ChevronLeft, Cog, } from "lucide-react";
 import { Suspense } from "react";
 import Link from "next/link";
-
 import ProfilePosts from "@/components/ProfilePosts";
-import { Profile } from "@prisma/client";
+import { Follower, Profile } from "@prisma/client";
+import FollowButton from "./FollowButton";
 export default function ProfilePageContent({
   profile,
   isOurProfile = false,
+  ourFollow = null
 }: {
   profile: Profile;
   isOurProfile?: boolean;
+  ourFollow?:Follower|null;
 }) {
   return (
     <main>
@@ -50,6 +52,13 @@ export default function ProfilePageContent({
         <p className="text-gray-500 mt-1 mb-1">{profile.subtitle}</p>
         <p className="">{profile.bio}</p>
       </section>
+
+      {!isOurProfile && (
+        <section className="flex justify-center my-4">
+         <FollowButton ourFollow={ourFollow} profileIdToFollow={profile.id}/>
+        </section>
+      )}
+
       <section className="mt-4 ">
         <div className="flex justify-center gap-4 font-bold">
           <Link href={"/"}>Posts </Link>
