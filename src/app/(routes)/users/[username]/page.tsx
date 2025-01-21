@@ -8,19 +8,20 @@ export default async function UserProfilePage({
   params: Promise<{ username?: string }>;
 }) {
   const username = (await params).username;
-
+  const sessionEmail =  await getSessionEmail() || '';
   const profile = await prisma.profile.findFirstOrThrow({
     where: { username: username },
   });
   const ourFollow = await prisma.follower.findFirst({
     where: {
-      followingProfileEmail: (await getSessionEmail()) || "",
+      followingProfileEmail: sessionEmail,
       followingProfileId: profile.id,
     },
   });
   return (
     <div>
       <ProfilePageContent
+      isOurProfile={profile.email === sessionEmail  }
         ourFollow={ourFollow}
         profile={profile}
       />
