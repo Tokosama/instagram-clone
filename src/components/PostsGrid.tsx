@@ -19,10 +19,10 @@ export default function PostsGrid({posts}:{posts:Post[]}) {
           {posts.map((post) => (
             <Link href={`/posts/${post.id}`}
               key={post.id}
-              className="mb-4 "
+              className="mb-4 block  "
             >
               <img
-              className="rounded-lg"
+              className="rounded-lg shadow-md"
                 src={post.image}
                 alt=""
               />

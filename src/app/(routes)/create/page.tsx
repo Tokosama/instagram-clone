@@ -8,10 +8,12 @@ import { useEffect, useRef, useState } from "react";
 export default function CreatePage() {
   const [imageUrl, setImageUrl] = useState("");
   const [file, setFile] = useState<File | null>(null);
+  const [isUploading, setIsUploading] = useState(false);
   const fileInRef = useRef<HTMLInputElement>(null);
-  const router = useRouter()
+  const router = useRouter();
   useEffect(() => {
     if (file) {
+      setIsUploading(true);
       const data = new FormData();
       data.set("file", file);
       fetch("/api/upload", {
@@ -25,15 +27,19 @@ export default function CreatePage() {
     }
   }, [file]);
   return (
-    <form 
-    className="max-w-md mx-auto "
-    action={async data =>{
-     const id = await postEntry(data);
-     router.push(`/post/${id}`)
-     router.refresh();
-
-    }}>
-        <input type="hidden"  name="image"value={imageUrl} />
+    <form
+      className="max-w-md mx-auto "
+      action={async (data) => {
+        const id = await postEntry(data);
+        router.push(`/posts/${id}`);
+        router.refresh();
+      }}
+    >
+      <input
+        type="hidden"
+        name="image"
+        value={imageUrl}
+      />
       <div className="flex flex-col  gap-4 ">
         <div className="">
           <div className=" min-h-64 p-2 bg-gray-400 rounded-md relative ">
@@ -54,19 +60,21 @@ export default function CreatePage() {
                 ref={fileInRef}
               />
               <Button
+                disabled={isUploading}
                 type="button"
                 variant="surface"
                 onClick={() => fileInRef?.current?.click()}
               >
-                <CloudUpload size={16} />
-                Choose Image
+                {!isUploading && <CloudUpload size={16} />}
+                {isUploading?'Uploading... ':'Choose Image'}
+                
               </Button>
             </div>
           </div>
         </div>
         <div className="flex flex-col gap-2">
           <TextArea
-          name="description"
+            name="description"
             className="h-24"
             placeholder="Add photo description ... "
           />

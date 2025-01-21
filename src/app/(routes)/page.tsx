@@ -1,4 +1,5 @@
 import { auth, signIn } from "@/auth";
+import Preloader from "@/components/Preloader";
 import UserHome from "@/components/UserHome";
 import { Suspense } from "react";
 
@@ -8,7 +9,7 @@ export default async function Home() {
     <>
       <div className="">
         {session && (
-          <Suspense fallback="loading ... ">
+          <Suspense fallback={<Preloader /> }>
             <UserHome session={session} />
           </Suspense>
         )}
