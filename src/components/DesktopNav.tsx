@@ -8,8 +8,8 @@ import {
 } from "lucide-react";
 export default function DesktopNav() {
   return (
-    <div className="hidden lg:block shadow-md shadow-gray-400 px-4 pt-2 w-48">
-      <div className="top-0 sticky">
+    <div className="hidden lg:block shadow-md shadow-gray-400 px-4 pb-4 w-48">
+      <div className="top-4 sticky">
         <img
           src="/igt.png"
           alt=""
