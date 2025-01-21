@@ -6,6 +6,7 @@ import LikesInfo from "./LikesInfo";
 import { getSessionEmailOrThrow } from "@/actions";
 import { BookmarkIcon } from "lucide-react";
 import Link from "next/link";
+import BookmarkButton from "./BookmarkButton";
 
 export default async function HomePosts({
   follows,
@@ -24,6 +25,12 @@ export default async function HomePosts({
     take: 100,
   });
   const likes = await prisma.like.findMany({
+    where: {
+      author: await getSessionEmailOrThrow(),
+      postId: { in: posts.map((p) => p.id) },
+    },
+  });
+  const bookmarks = await prisma.bookmark.findMany({
     where: {
       author: await getSessionEmailOrThrow(),
       postId: { in: posts.map((p) => p.id) },
@@ -70,9 +77,7 @@ export default async function HomePosts({
                     (like) => like.postId === post.id || null
                   )}
                 />
-                <button>
-                  <BookmarkIcon />
-                </button>
+                <BookmarkButton post={post} sessionBookmark={bookmarks.find(b => b.postId === post.id) ||null}/>
               </div>
             </div>
             <p className="text-slate-600 mt-2">{post.description}</p>
