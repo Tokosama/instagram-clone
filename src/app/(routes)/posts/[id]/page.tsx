@@ -8,7 +8,7 @@ export default async function SinglePostPage({
   params: Promise<{ id: string }>;
 }) {
   const id = (await params).id;
-  const { post, authorProfile, comments, commentsAuthors, myLike } =
+  const { post, authorProfile, comments, commentsAuthors, myLike, myBookmark } =
     await getSinglePostData(id);
 
   return (
@@ -18,6 +18,7 @@ export default async function SinglePostPage({
       comments={comments}
       commentsAuthors={commentsAuthors}
       myLike={myLike}
+      myBookMark={myBookmark}
     />
   );
 }

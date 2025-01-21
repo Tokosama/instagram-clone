@@ -1,5 +1,3 @@
-import { getSessionEmailOrThrow } from "@/actions";
-import { prisma } from "@/db";
 import { Follower, Profile } from "@prisma/client";
 import { Avatar } from "@radix-ui/themes";
 import { PlusIcon } from "lucide-react";

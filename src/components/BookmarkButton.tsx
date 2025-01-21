@@ -18,7 +18,7 @@ export default function BookmarkButton({
     <>
       {" "}
       <form
-        action={async (data:FormData) => {
+        action={async () => {
           setBookmarkedByMe((prev) => !prev);
           if (bookmarkedByMe) {
             await unbookmarkPost(post.id);

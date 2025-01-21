@@ -4,7 +4,6 @@ import { Follower, Profile } from "@prisma/client";
 import { Avatar } from "@radix-ui/themes";
 import LikesInfo from "./LikesInfo";
 import { getSessionEmailOrThrow } from "@/actions";
-import { BookmarkIcon } from "lucide-react";
 import Link from "next/link";
 import BookmarkButton from "./BookmarkButton";
 

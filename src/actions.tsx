@@ -4,12 +4,12 @@ import { auth } from "./auth";
 import { prisma } from "./db";
 import { uniq } from "lodash";
 
-export async function getSessionEmail():Promise<string|null|undefined>{
+export async function getSessionEmail(): Promise<string | null | undefined> {
   const session = await auth();
   return session?.user?.email;
 }
 
-export async function getSessionEmailOrThrow():Promise<string> {
+export async function getSessionEmailOrThrow(): Promise<string> {
   const userEmail = await getSessionEmail();
   if (!userEmail) {
     throw "not loggedd in";
@@ -115,7 +115,13 @@ export async function getSinglePostData(postId: string) {
       postId: post.id,
     },
   });
-  return { post, authorProfile, comments, commentsAuthors, myLike };
+  const myBookmark = await prisma.bookmark.findFirst({
+    where: {
+      author: await getSessionEmailOrThrow(),
+      postId: post.id,
+    },
+  });
+  return { post, authorProfile, comments, commentsAuthors, myLike, myBookmark };
 }
 
 export async function followProfile(profileIdToFollow: string) {
@@ -139,31 +145,26 @@ export async function unfollowProfile() {
     where: {
       followingProfileEmail: sessionProfile.email,
       followingProfileId: sessionProfile.id,
-
     },
   });
 }
 
-
-export async function bookmarkPost(postId:string){
+export async function bookmarkPost(postId: string) {
   const sessionEmail = await getSessionEmailOrThrow();
   await prisma.bookmark.create({
-    data:{
-      author:sessionEmail,
+    data: {
+      author: sessionEmail,
       postId,
-    }
-  })
-
+    },
+  });
 }
 
-
-export async function unbookmarkPost(postId:string){
+export async function unbookmarkPost(postId: string) {
   const sessionEmail = await getSessionEmailOrThrow();
   await prisma.bookmark.deleteMany({
-    where:{
-      author:sessionEmail,
+    where: {
+      author: sessionEmail,
       postId,
-    }
-  })
-
+    },
+  });
 }
