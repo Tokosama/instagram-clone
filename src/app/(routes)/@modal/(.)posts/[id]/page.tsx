@@ -1,6 +1,6 @@
-import { getSinglePostData } from "@/actions";
 import Modal from "@/components/Modal";
-import SinglePostContent from "@/components/SinglePostContent";
+import ModalPostContent from "@/components/ModalPostContent";
+import { Suspense } from "react";
 
 export default async function PostModal({
   params,
@@ -8,18 +8,12 @@ export default async function PostModal({
   params: Promise<{ id: string }>;
 }) {
   const id = (await params).id;
-  const { post, authorProfile, comments, commentsAuthors, myLike } =
-    await getSinglePostData(id);
 
   return (
-  <Modal>
-      <SinglePostContent
-               post={post}
-               authorProfile={authorProfile}
-               comments={comments}
-               commentsAuthors={commentsAuthors}
-               myLike={myLike}
-             />
-  </Modal>
+    <Modal>
+      <Suspense fallback="loading ... ">
+        <ModalPostContent postId={id} />
+      </Suspense>
+    </Modal>
   );
 }

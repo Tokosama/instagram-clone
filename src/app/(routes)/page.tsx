@@ -1,5 +1,6 @@
 import { auth, signIn } from "@/auth";
 import UserHome from "@/components/UserHome";
+import { Suspense } from "react";
 
 export default async function Home() {
   const session = await auth();
@@ -7,7 +8,9 @@ export default async function Home() {
     <>
       <div className="">
         {session && (
-         <UserHome session={session}/>
+          <Suspense fallback="loading ... ">
+            <UserHome session={session} />
+          </Suspense>
         )}
 
         {!session && (
