@@ -91,17 +91,16 @@ export default function SettingsForm({ profile }: { profile: Profile | null }) {
       <label className="flex gap-2 items-center mt-2">
         <span>Dark mode:</span>
         <Switch
-        defaultChecked={localStorage.getItem('theme') == 'dark'}
+          defaultChecked={localStorage.getItem('theme') == 'dark'}
           onCheckedChange={(isDark) => {
-            const html =   document.querySelector('html');
-            const theme = isDark ? 'dark' : 'light' ;
-            if(html){
-              html.dataset.theme = isDark ? 'dark' : 'light' ;
+            const html = document.querySelector('html');
+            const theme = isDark ? 'dark' : 'light';
+            if (html) {
+              html.dataset.theme = theme;
             }
-            localStorage.setItem('theme',theme);
-            window.location.reload()
-          }}
-        />
+            localStorage.setItem('theme', theme);
+            window.location.reload();
+        }} />
       </label>
       <div className="mt-4 flex justify-center">
         <Button variant={"solid"}>Save Settings</Button>
