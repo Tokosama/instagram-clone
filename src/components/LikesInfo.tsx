@@ -41,7 +41,7 @@ export default function LikesInfo({
           className={""}
           type="submit"
         >
-          <Heart className={likedByMe ? "text-red-500  fill-red-500" : ""} />
+          <Heart className={likedByMe ? "text-red-500  fill-red-500" : "dark:text-white"} />
         </button>
         {showText && <p>{post.likesCount} people like this</p>}
       </form>

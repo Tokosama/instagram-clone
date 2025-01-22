@@ -2,15 +2,11 @@
 
 import { updateProfile } from "@/actions";
 import { Profile } from "@prisma/client";
-import { Button, TextArea, TextField } from "@radix-ui/themes";
+import { Button, Switch, TextArea, TextField } from "@radix-ui/themes";
 import { UploadCloudIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-export default function SettingsForm({
-  profile,
-}: {
-  profile: Profile | null;
-}) {
+export default function SettingsForm({ profile }: { profile: Profile | null }) {
   const router = useRouter();
   const fileInRef = useRef<HTMLInputElement>(null);
   const [avatarUrl, setAvatarUrl] = useState(profile?.avatar || null);
@@ -37,11 +33,19 @@ export default function SettingsForm({
         router.refresh();
       }}
     >
-      <input type="hidden" name="avatar" value={avatarUrl || ''} />
+      <input
+        type="hidden"
+        name="avatar"
+        value={avatarUrl || ""}
+      />
       <div className="flex gap-4 items-center">
         <div className="">
           <div className="bg-gray-200 size-24 rounded-full aspect-square border-2 overflow-hidden shadow-md shadow-gray-400 ">
-            <img className=" " src={avatarUrl || undefined} alt="" />
+            <img
+              className=" "
+              src={avatarUrl || undefined}
+              alt=""
+            />
           </div>
         </div>
         <div className="">
@@ -84,6 +88,21 @@ export default function SettingsForm({
         name="bio"
         defaultValue={profile?.bio || ""}
       />
+      <label className="flex gap-2 items-center mt-2">
+        <span>Dark mode:</span>
+        <Switch
+        defaultChecked={localStorage.getItem('theme') == 'dark'}
+          onCheckedChange={(isDark) => {
+            const html =   document.querySelector('html');
+            const theme = isDark ? 'dark' : 'light' ;
+            if(html){
+              html.dataset.theme = isDark ? 'dark' : 'light' ;
+            }
+            localStorage.setItem('theme',theme);
+            window.location.reload()
+          }}
+        />
+      </label>
       <div className="mt-4 flex justify-center">
         <Button variant={"solid"}>Save Settings</Button>
       </div>

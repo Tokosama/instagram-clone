@@ -24,7 +24,7 @@ export default async function HomeToRow({
         >
           <div>
             <div className=" inline-block p-1  bg-gradient-to-tr from-ig-orange to-ig-red rounded-full">
-              <div className=" inline-block p-0.5  bg-white rounded-full">
+              <div className=" inline-block p-0.5  bg-white dark:bg-black rounded-full">
                 <Avatar
                   size="6"
                   radius="full"

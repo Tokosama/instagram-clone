@@ -38,7 +38,7 @@ export default function BookmarkButton({
           className={""}
           type="submit"
         >
-          <Bookmark className={bookmarkedByMe ? " fill-gray-800" : ""} />
+          <Bookmark className={bookmarkedByMe ? " fill-gray-800 dark:text-white dark:fill-white" : "dark:text-white"} />
         </button>
       </form>
     </>

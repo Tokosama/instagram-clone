@@ -5,6 +5,7 @@ import "@radix-ui/themes/styles.css";
 import { Theme } from "@radix-ui/themes";
 import MobileNav from "@/components/MobileNav";
 import DesktopNav from "@/components/DesktopNav";
+import ThemeObserver from "@/components/ThemeObserver";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,14 +30,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" >
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased `}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased dark:bg-black`}
       >
-        <Theme>
+        <Theme >
           {modal}
 
-          <div className="flex min-h-screen">
+          <div className="flex min-h-screen dark:bg-gray-950 dark:text-gray-300">
             <DesktopNav />
             <div className="pb-24 lg:pb-4 pt-4  px-4 lg:px-8 w-full  flex justify-around ">
               <div className="w-full">{children}</div>
@@ -45,6 +46,7 @@ export default function RootLayout({
 
           <MobileNav />
         </Theme>
+        <ThemeObserver />
       </body>
     </html>
   );

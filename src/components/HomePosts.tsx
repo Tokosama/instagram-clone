@@ -62,7 +62,7 @@ export default async function HomePosts({
                   src={profile?.avatar || ""}
                 />
                 <Link
-                  className="font-bold text-gray-700"
+                  className="font-bold text-gray-700 dark:text-gray-300"
                   href={`/users/${profile?.username}`}
                 >
                   {profile?.name}
@@ -79,7 +79,7 @@ export default async function HomePosts({
                 <BookmarkButton post={post} sessionBookmark={bookmarks.find(b => b.postId === post.id) ||null}/>
               </div>
             </div>
-            <p className="text-slate-600 mt-2">{post.description}</p>
+            <p className="text-slate-600 dark:text-slate-400 mt-2">{post.description}</p>
           </div>
         );
       })}
