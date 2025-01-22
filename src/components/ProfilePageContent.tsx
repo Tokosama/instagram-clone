@@ -11,7 +11,7 @@ export default function ProfilePageContent({
 }: {
   profile: Profile;
   isOurProfile?: boolean;
-  ourFollow?: Follower | null;
+  ourFollow: Follower | null;
 }) {
   return (
     <main>

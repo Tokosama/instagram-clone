@@ -15,7 +15,7 @@ export default async function UserProfilePage({
   const ourFollow = await prisma.follower.findFirst({
     where: {
       followingProfileEmail: sessionEmail,
-      followingProfileId: profile.id,
+      followedProfileId: profile.id,
     },
   });
   return (
