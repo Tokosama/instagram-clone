@@ -3,7 +3,7 @@ import { Avatar } from "@radix-ui/themes";
 import { PlusIcon } from "lucide-react";
 
 export default async function HomeToRow({
-  follows,
+//  follows,
   profiles,
 }: {
   follows: Follower[];

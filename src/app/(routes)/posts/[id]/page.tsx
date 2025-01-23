@@ -18,7 +18,7 @@ export default async function SinglePostPage({
       comments={comments}
       commentsAuthors={commentsAuthors}
       myLike={myLike}
-      myBookMark={myBookmark}
+      myBookmark={myBookmark}
     />
   );
 }

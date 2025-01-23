@@ -8,7 +8,7 @@ import Link from "next/link";
 import BookmarkButton from "./BookmarkButton";
 
 export default async function HomePosts({
-  follows,
+ // follows,
   profiles,
 }: {
   follows: Follower[];
