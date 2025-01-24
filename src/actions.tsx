@@ -1,6 +1,6 @@
 "use server";
 
-import { auth } from "./auth";
+import { auth, signIn } from "./auth";
 import { prisma } from "./db";
 import { uniq } from "lodash";
 
@@ -167,4 +167,7 @@ export async function unbookmarkPost(postId: string) {
       postId,
     },
   });
+}
+export async function handleGoogleSignIn() {
+  await signIn("google");
 }
