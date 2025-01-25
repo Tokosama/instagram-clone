@@ -19,7 +19,7 @@ export default async function HomeToRow({
         <p className="text-center text-gray-400 text-sm">New Post</p>
       </div>
       {profiles.map((profile) => (
-        <div
+        <Link href={`/users/${profile.username}`}
           key={profile.id}
           className=" w-24  flex justify-center flex-col items-center "
         >
@@ -38,7 +38,7 @@ export default async function HomeToRow({
               {profile.username}
             </p>
           </div>
-        </div>
+        </Link>
       ))}{" "}
     </div>
   );
