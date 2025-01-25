@@ -5,7 +5,7 @@ import PostsGrid from "./PostsGrid";
 
 export default async function SearchResults({ query }: { query?: string }) {
   const profiles = await prisma.profile.findMany({
-    where: {
+    where:query? {
       OR: [
         {
           username: { contains: query },
@@ -14,7 +14,7 @@ export default async function SearchResults({ query }: { query?: string }) {
           name: { contains: query },
         },
       ],
-    },
+    }:{},
     take: 10,
   });
   const posts = await prisma.post.findMany({
@@ -25,7 +25,10 @@ export default async function SearchResults({ query }: { query?: string }) {
   });
   return (
     <div>
-      <h1 className="text-lg mt-4 "> Result for {query}</h1>
+      {typeof query !== "undefined" && (
+        <h1 className="text-lg mt-4 "> Result for {query}</h1>
+      )}
+     
       {profiles?.length > 0 && (
         <div className="grid mt-4 sm:grid-cols-2  gap-2 ">
           {profiles.map((profile) => (
@@ -44,7 +47,9 @@ export default async function SearchResults({ query }: { query?: string }) {
               </div>
               <div>
                 <h3>{profile.name}</h3>
-                <h4 className="text-gray-500 dark:text-gray-500 text-sm">@{profile.username}</h4>
+                <h4 className="text-gray-500 dark:text-gray-500 text-sm">
+                  @{profile.username}
+                </h4>
               </div>
             </Link>
           ))}

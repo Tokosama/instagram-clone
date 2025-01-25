@@ -11,7 +11,7 @@ export default function MobileNav() {
   return (
     <>
       {" "}
-      <div className="block lg:hidden fixed bottom-0    left-0 right-0 ">
+      <div className="block lg:hidden fixed bottom-0     left-0 right-0 ">
         <div className=" flex   text-gray-600 dark:text-gray-300  *:flex *:items-center    ">
           <div className="pl-2 bg-white dark:bg-black rounded-t-xl w-full relative z-10 *:size-12 *:flex  *:items-center *:justify-center justify-around">
             <Link

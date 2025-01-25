@@ -11,6 +11,7 @@ export default function SettingsForm({ profile }: { profile: Profile | null }) {
   const fileInRef = useRef<HTMLInputElement>(null);
   const [avatarUrl, setAvatarUrl] = useState(profile?.avatar || null);
   const [file, setFile] = useState<File>();
+  
   useEffect(() => {
     if (file) {
       const data = new FormData();

@@ -1,6 +1,7 @@
 import { Follower, Profile } from "@prisma/client";
 import { Avatar } from "@radix-ui/themes";
 import { PlusIcon } from "lucide-react";
+import Link from "next/link";
 
 export default async function HomeToRow({
 //  follows,
@@ -12,10 +13,10 @@ export default async function HomeToRow({
   return (
     <div className="flex gap-3 lg:justify-center max-w-full overflow-x-auto">
       <div>
-        <button className="size-[92px]  bg-gradient-to-tr from-ig-orange to-ig-red text-white flex items-center justify-center rounded-full">
+        <Link href="/create" className="size-[92px]  bg-gradient-to-tr from-ig-orange to-ig-red text-white flex items-center justify-center rounded-full">
           <PlusIcon size={"42"} />
-        </button>
-        <p className="text-center text-gray-400 text-sm">New Story</p>
+        </Link>
+        <p className="text-center text-gray-400 text-sm">New Post</p>
       </div>
       {profiles.map((profile) => (
         <div
