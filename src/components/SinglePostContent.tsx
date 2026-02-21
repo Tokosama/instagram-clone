@@ -2,7 +2,13 @@ import Comment from "@/components/Comment";
 import SessionCommentForm from "@/components/SessionCommentForm";
 import { Suspense } from "react";
 import LikesInfo from "@/components/LikesInfo";
-import { Bookmark, Comment as CommentModel , Like, Post,Profile } from "@prisma/client";
+import {
+  Bookmark,
+  Comment as CommentModel,
+  Like,
+  Post,
+  Profile,
+} from "@prisma/client";
 import Preloader from "./Preloader";
 import BookmarkButton from "./BookmarkButton";
 
@@ -12,19 +18,19 @@ export default async function SinglePostContent({
   comments,
   commentsAuthors,
   myLike,
-  myBookmark
+  myBookmark,
 }: {
   post: Post;
   authorProfile: Profile;
   comments: CommentModel[];
   commentsAuthors: Profile[];
-  myLike: Like|null;
-  myBookmark:Bookmark|null
+  myLike: Like | null;
+  myBookmark: Bookmark | null;
 }) {
   return (
-    <div>
-      <div className="grid md:grid-cols-2 gap-4">
-        <div>
+    <div className="w-full">
+      <div className="grid md:grid-cols-2 gap-4 w-full ">
+        <div className="">
           <img
             className="rounded-md"
             src={post.image}
@@ -44,7 +50,7 @@ export default async function SinglePostContent({
                   createdAt={comment.createdAt}
                   text={comment.text}
                   authorProfile={commentsAuthors.find(
-                    (a) => a.email === comment.author
+                    (a) => a.email === comment.author,
                   )}
                 />
               </div>
@@ -56,11 +62,14 @@ export default async function SinglePostContent({
               sessionLike={myLike || undefined}
             />
             <div className="flex items-center">
-              <BookmarkButton post={post} sessionBookmark={myBookmark}/>
+              <BookmarkButton
+                post={post}
+                sessionBookmark={myBookmark}
+              />
             </div>
           </div>
           <div className="pt-8 border-t  border-gray-300 dark:border-gray-700">
-            <Suspense fallback={<Preloader /> }>
+            <Suspense fallback={<Preloader />}>
               <SessionCommentForm postId={post.id} />
             </Suspense>
           </div>

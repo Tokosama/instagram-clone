@@ -1,7 +1,9 @@
+"use client";
 import { Follower, Profile } from "@prisma/client";
 import { CheckIcon, ChevronLeft, Cog } from "lucide-react";
 import Link from "next/link";
 import FollowButton from "./FollowButton";
+import { useRouter } from "next/navigation";
 
 export default function ProfilePageInfo({
   profile,
@@ -10,12 +12,14 @@ export default function ProfilePageInfo({
 }: {
   profile: Profile;
   isOurProfile: boolean;
-  ourFollow: Follower |null;
+  ourFollow: Follower | null;
 }) {
+  const router = useRouter();
+
   return (
     <div>
       <section className="flex justify-between items-center">
-        <button>
+        <button onClick={() => router.back()}>
           <ChevronLeft />
         </button>
         <div className="font-bold flex items-center gap-2">

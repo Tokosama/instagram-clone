@@ -1,14 +1,14 @@
 "use client";
 
-import { ScaleLoader } from "react-spinners";
+import { ClipLoader, ScaleLoader } from "react-spinners";
 
 export default function Preloader() {
   return (
     <>
-      <div className="">
-        <ScaleLoader
-        color={"#aaa"}
-          speedMultiplier={4}
+      <div className="w-full  h-screen flex items-center justify-center">
+        <ClipLoader
+          color={"#D44044"}
+          speedMultiplier={1}
           loading={true}
         />{" "}
       </div>

@@ -18,11 +18,10 @@ export default async function SearchPage({
       <div className="h-full">
         {session && (
           <div className="w-full">
-            <div className="max-w-md mx-auto">
-              <SearchForm />
-              
+            <div className="max-w-md mx-auto w-full h-full">
+              <SearchForm />              
                 <Suspense fallback={<Preloader />}>
-                  <SearchResults query={query} />
+                  <SearchResults query={query} session={session} />
                 </Suspense>
             </div>
           </div>

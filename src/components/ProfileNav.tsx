@@ -10,7 +10,7 @@ export default function ProfileNav({
   username:string;
 }) {
   const path = usePathname();
-  const bookmarkedActive = path.includes("/bookmarder");
+  const bookmarkedActive = path.includes("/bookmarked");
   const highlightsActive = path.includes("/highlights");
   const postsdActive = !bookmarkedActive && !highlightsActive;
 
@@ -23,12 +23,7 @@ export default function ProfileNav({
         >
           Posts{" "}
         </Link>
-        <Link
-          className={highlightsActive ? "text-gray-800 dark:text-gray-300" : "text-gray-400 dark:text-gray-600"}
-          href={"/highlights"}
-        >
-          Highlights
-        </Link>
+      
         {isOurProfile && (
           <Link
             className={bookmarkedActive ? "text-gray-800 dark:text-gray-300" : "text-gray-400 dark:text-gray-600"}
