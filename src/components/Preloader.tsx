@@ -1,6 +1,6 @@
 "use client";
 
-import { ClipLoader, ScaleLoader } from "react-spinners";
+import { ClipLoader} from "react-spinners";
 
 export default function Preloader() {
   return (
