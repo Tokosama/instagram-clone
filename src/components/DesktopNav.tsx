@@ -32,7 +32,7 @@ export default function DesktopNav() {
 
         <div className="mt-8 flex flex-col gap-2">
           {links.map((link) => {
-            const isActive = (href) => {
+            const isActive = (href:string) => {
               if (href === "/") {
                 return pathname === "/"; // exact match seulement
               }
